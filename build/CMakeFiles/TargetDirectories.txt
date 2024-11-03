@@ -1,5 +1,0 @@
-/home/runner/workspace/build/CMakeFiles/holohash_tests.dir
-/home/runner/workspace/build/CMakeFiles/holohash_bench.dir
-/home/runner/workspace/build/CMakeFiles/test.dir
-/home/runner/workspace/build/CMakeFiles/edit_cache.dir
-/home/runner/workspace/build/CMakeFiles/rebuild_cache.dir

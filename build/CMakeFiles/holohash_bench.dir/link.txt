@@ -1,1 +1,0 @@
-/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++  -Wall -Wextra -O2 -std=c++20 CMakeFiles/holohash_bench.dir/benchmarks/benchmark_main.cpp.o -o holohash_bench

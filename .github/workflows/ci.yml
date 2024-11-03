@@ -1,0 +1,75 @@
+name: C++ CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    name: ${{ matrix.config.name }}
+    runs-on: ${{ matrix.config.os }}
+    strategy:
+      matrix:
+        config:
+          - {
+              name: "Ubuntu GCC",
+              os: ubuntu-latest,
+              build_type: "Release",
+              cc: "gcc-11",
+              cxx: "g++-11"
+            }
+          - {
+              name: "Ubuntu Clang",
+              os: ubuntu-latest,
+              build_type: "Release",
+              cc: "clang",
+              cxx: "clang++"
+            }
+          - {
+              name: "macOS Latest",
+              os: macos-latest,
+              build_type: "Release",
+              cc: "clang",
+              cxx: "clang++"
+            }
+          - {
+              name: "Windows MSVC",
+              os: windows-latest,
+              build_type: "Release",
+              cc: "cl",
+              cxx: "cl"
+            }
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install dependencies (Ubuntu)
+      if: runner.os == 'Linux'
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y cmake catch2
+
+    - name: Install dependencies (macOS)
+      if: runner.os == 'macOS'
+      run: |
+        brew install cmake catch2
+
+    - name: Configure CMake
+      run: |
+        cmake -B build -DCMAKE_BUILD_TYPE=${{ matrix.config.build_type }}
+      env:
+        CC: ${{ matrix.config.cc }}
+        CXX: ${{ matrix.config.cxx }}
+
+    - name: Build
+      run: cmake --build build --config ${{ matrix.config.build_type }}
+
+    - name: Test
+      working-directory: build
+      run: ctest -C ${{ matrix.config.build_type }} --output-on-failure
+
+    - name: Run benchmarks
+      working-directory: build
+      run: ./holohash_bench
