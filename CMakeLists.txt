@@ -4,17 +4,15 @@ project(holohash VERSION 1.0.0 LANGUAGES CXX)
 # Require C++20
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
-# Platform-specific optimizations
+# Enable warnings and basic optimizations
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=native")
-    if(CMAKE_SYSTEM_PROCESSOR MATCHES "x86_64")
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mavx2 -msse4.2")
-    elseif(CMAKE_SYSTEM_PROCESSOR MATCHES "aarch64")
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=armv8-a+simd")
-    endif()
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -O2")
+    # Ensure C++20 compatibility
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20")
 elseif(MSVC)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /arch:AVX2")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /O2 /std:c++20 /permissive-")
 endif()
 
 # Add include directory
@@ -31,19 +29,14 @@ add_executable(holohash_tests
     tests/test_security.cpp
 )
 
-# Add benchmark executable with maximum optimizations
+# Add benchmark executable
 add_executable(holohash_bench
     benchmarks/benchmark_main.cpp
 )
 
-if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
-    target_compile_options(holohash_bench PRIVATE -O3 -march=native -ffast-math)
-elseif(MSVC)
-    target_compile_options(holohash_bench PRIVATE /O2 /arch:AVX2 /fp:fast)
-endif()
-
-# Link Catch2
+# Link against standard libraries
 target_link_libraries(holohash_tests PRIVATE Catch2::Catch2)
+target_link_libraries(holohash_bench PRIVATE)
 
 # Enable testing
 enable_testing()

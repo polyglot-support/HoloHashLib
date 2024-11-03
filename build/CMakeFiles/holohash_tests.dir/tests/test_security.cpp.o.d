@@ -337,6 +337,7 @@ CMakeFiles/holohash_tests.dir/tests/test_security.cpp.o: \
  /home/runner/workspace/include/holohash/hash.hpp \
  /home/runner/workspace/include/holohash/types.hpp \
  /home/runner/workspace/include/holohash/exceptions.hpp \
+ /home/runner/workspace/include/holohash/platform.hpp \
  /home/runner/workspace/include/holohash/nonce.hpp \
  /home/runner/workspace/include/holohash/keychain.hpp \
  /nix/store/14c6s4xzhy14i2b05s00rjns2j93gzz4-gcc-13.2.0/include/c++/13.2.0/bitset \

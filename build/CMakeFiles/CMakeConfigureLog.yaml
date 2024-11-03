@@ -348,3 +348,40 @@ events:
       Running the CXX compiler's linker: "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/ld" "-v"
       GNU ld (GNU Binutils) 2.41
 ...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/nix/store/q1nssraba326p2kp6627hldd2bhg254c-cmake-3.29.2/share/cmake-3.29/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/nix/store/q1nssraba326p2kp6627hldd2bhg254c-cmake-3.29.2/share/cmake-3.29/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "/nix/store/q1nssraba326p2kp6627hldd2bhg254c-cmake-3.29.2/share/cmake-3.29/Modules/CheckCXXCompilerFlag.cmake:34 (cmake_check_compiler_flag)"
+      - "CMakeLists.txt:25 (check_cxx_compiler_flag)"
+    checks:
+      - "Performing Test COMPILER_SUPPORTS_AVX2"
+    directories:
+      source: "/home/runner/workspace/build/CMakeFiles/CMakeScratch/TryCompile-6E5oeK"
+      binary: "/home/runner/workspace/build/CMakeFiles/CMakeScratch/TryCompile-6E5oeK"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: " -Wall -Wextra -O3 -msse2"
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "COMPILER_SUPPORTS_AVX2"
+      cached: true
+      stdout: |
+        Change Dir: '/home/runner/workspace/build/CMakeFiles/CMakeScratch/TryCompile-6E5oeK'
+        
+        Run Build Command(s): /nix/store/q1nssraba326p2kp6627hldd2bhg254c-cmake-3.29.2/bin/cmake -E env VERBOSE=1 /nix/store/cdzpn0rdq810aknww3w9fy3wmw9ixr66-gnumake-4.4.1/bin/make -f Makefile cmTC_5dc32/fast
+        /nix/store/cdzpn0rdq810aknww3w9fy3wmw9ixr66-gnumake-4.4.1/bin/make  -f CMakeFiles/cmTC_5dc32.dir/build.make CMakeFiles/cmTC_5dc32.dir/build
+        make[1]: Entering directory '/home/runner/workspace/build/CMakeFiles/CMakeScratch/TryCompile-6E5oeK'
+        Building CXX object CMakeFiles/cmTC_5dc32.dir/src.cxx.o
+        /nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++ -DCOMPILER_SUPPORTS_AVX2  -Wall -Wextra -O3 -msse2  -std=c++20   -mavx2 -o CMakeFiles/cmTC_5dc32.dir/src.cxx.o -c /home/runner/workspace/build/CMakeFiles/CMakeScratch/TryCompile-6E5oeK/src.cxx
+        Linking CXX executable cmTC_5dc32
+        /nix/store/q1nssraba326p2kp6627hldd2bhg254c-cmake-3.29.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5dc32.dir/link.txt --verbose=1
+        /nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++  -Wall -Wextra -O3 -msse2  CMakeFiles/cmTC_5dc32.dir/src.cxx.o -o cmTC_5dc32
+        make[1]: Leaving directory '/home/runner/workspace/build/CMakeFiles/CMakeScratch/TryCompile-6E5oeK'
+        
+      exitCode: 0
+...
