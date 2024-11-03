@@ -2,9 +2,19 @@ name: C++ CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master, main ]  # Support both master and main branches
   pull_request:
-    branches: [ main ]
+    branches: [ master, main ]
+  workflow_dispatch:  # Enable manual triggers
+    inputs:
+      build_type:
+        description: 'Build type (Release/Debug)'
+        required: true
+        default: 'Release'
+        type: choice
+        options:
+        - Release
+        - Debug
 
 jobs:
   build:
@@ -16,28 +26,28 @@ jobs:
           - {
               name: "Ubuntu GCC",
               os: ubuntu-latest,
-              build_type: "Release",
+              build_type: "${{ github.event.inputs.build_type || 'Release' }}",
               cc: "gcc-11",
               cxx: "g++-11"
             }
           - {
               name: "Ubuntu Clang",
               os: ubuntu-latest,
-              build_type: "Release",
+              build_type: "${{ github.event.inputs.build_type || 'Release' }}",
               cc: "clang",
               cxx: "clang++"
             }
           - {
               name: "macOS Latest",
               os: macos-latest,
-              build_type: "Release",
+              build_type: "${{ github.event.inputs.build_type || 'Release' }}",
               cc: "clang",
               cxx: "clang++"
             }
           - {
               name: "Windows MSVC",
               os: windows-latest,
-              build_type: "Release",
+              build_type: "${{ github.event.inputs.build_type || 'Release' }}",
               cc: "cl",
               cxx: "cl"
             }
@@ -73,3 +83,12 @@ jobs:
     - name: Run benchmarks
       working-directory: build
       run: ./holohash_bench
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: ${{ matrix.config.name }}-build
+        path: |
+          build/holohash_tests*
+          build/holohash_bench*
+        if-no-files-found: warn
