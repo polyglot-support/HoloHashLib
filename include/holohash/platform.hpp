@@ -25,8 +25,36 @@ namespace platform {
 #endif
 
 // Memory alignment helpers
-inline constexpr bool is_aligned(const void* ptr, std::size_t alignment) noexcept {
-    return (reinterpret_cast<std::uintptr_t>(ptr) % alignment) == 0;
+namespace detail {
+    // Check if a number is a power of 2 at compile time or runtime
+    constexpr bool is_power_of_2(std::size_t x) noexcept {
+        return x != 0 && (x & (x - 1)) == 0;
+    }
+
+    // Convert pointer to integer at compile time or runtime
+    constexpr std::uintptr_t to_uintptr(const void* ptr) noexcept {
+        return reinterpret_cast<std::uintptr_t>(ptr);
+    }
+}
+
+template<typename T>
+constexpr bool is_aligned(const T* ptr, std::size_t alignment) noexcept {
+    static_assert(std::is_object_v<T>, "T must be an object type");
+    static_assert(!std::is_function_v<T>, "T cannot be a function type");
+    
+    // Early return for invalid alignments
+    if (!detail::is_power_of_2(alignment)) {
+        return false;
+    }
+    
+    // nullptr is aligned to any power-of-2 alignment
+    if (ptr == nullptr) {
+        return true;
+    }
+    
+    // Check alignment using bitwise operations instead of modulo
+    auto addr = detail::to_uintptr(ptr);
+    return (addr & (alignment - 1)) == 0;
 }
 
 // Platform-independent byte rotation
