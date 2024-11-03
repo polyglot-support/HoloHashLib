@@ -1,0 +1,39 @@
+Start testing: Nov 03 02:21 UTC
+----------------------------------------------------------
+1/1 Testing: holohash_tests
+1/1 Test: holohash_tests
+Command: "/home/runner/workspace/build/holohash_tests"
+Directory: /home/runner/workspace/build
+"holohash_tests" start time: Nov 03 02:21 UTC
+Output:
+----------------------------------------------------------
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+holohash_tests is a Catch v2.13.10 host application.
+Run with -? for options
+
+-------------------------------------------------------------------------------
+Avalanche Effect Testing
+  Single bit changes cause significant output changes
+-------------------------------------------------------------------------------
+/home/runner/workspace/tests/test_security.cpp:45
+...............................................................................
+
+/home/runner/workspace/tests/test_security.cpp:67: FAILED:
+  REQUIRE( average_bit_difference_ratio >= MIN_AVALANCHE_RATIO )
+with expansion:
+  0.1111015625 >= 0.45
+
+===============================================================================
+test cases:     7 |     6 passed | 1 failed
+assertions: 11012 | 11011 passed | 1 failed
+
+<end of output>
+Test time =   0.21 sec
+----------------------------------------------------------
+Test Failed.
+"holohash_tests" end time: Nov 03 02:21 UTC
+"holohash_tests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Nov 03 02:21 UTC

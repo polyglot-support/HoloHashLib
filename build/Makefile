@@ -139,6 +139,43 @@ holohash_tests/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/holohash_tests.dir/build.make CMakeFiles/holohash_tests.dir/build
 .PHONY : holohash_tests/fast
 
+#=============================================================================
+# Target rules for targets named holohash_bench
+
+# Build rule for target.
+holohash_bench: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 holohash_bench
+.PHONY : holohash_bench
+
+# fast build rule for target.
+holohash_bench/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/holohash_bench.dir/build.make CMakeFiles/holohash_bench.dir/build
+.PHONY : holohash_bench/fast
+
+benchmarks/benchmark_main.o: benchmarks/benchmark_main.cpp.o
+.PHONY : benchmarks/benchmark_main.o
+
+# target to build an object file
+benchmarks/benchmark_main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/holohash_bench.dir/build.make CMakeFiles/holohash_bench.dir/benchmarks/benchmark_main.cpp.o
+.PHONY : benchmarks/benchmark_main.cpp.o
+
+benchmarks/benchmark_main.i: benchmarks/benchmark_main.cpp.i
+.PHONY : benchmarks/benchmark_main.i
+
+# target to preprocess a source file
+benchmarks/benchmark_main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/holohash_bench.dir/build.make CMakeFiles/holohash_bench.dir/benchmarks/benchmark_main.cpp.i
+.PHONY : benchmarks/benchmark_main.cpp.i
+
+benchmarks/benchmark_main.s: benchmarks/benchmark_main.cpp.s
+.PHONY : benchmarks/benchmark_main.s
+
+# target to generate assembly for a file
+benchmarks/benchmark_main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/holohash_bench.dir/build.make CMakeFiles/holohash_bench.dir/benchmarks/benchmark_main.cpp.s
+.PHONY : benchmarks/benchmark_main.cpp.s
+
 tests/test_hash.o: tests/test_hash.cpp.o
 .PHONY : tests/test_hash.o
 
@@ -244,7 +281,11 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... test"
+	@echo "... holohash_bench"
 	@echo "... holohash_tests"
+	@echo "... benchmarks/benchmark_main.o"
+	@echo "... benchmarks/benchmark_main.i"
+	@echo "... benchmarks/benchmark_main.s"
 	@echo "... tests/test_hash.o"
 	@echo "... tests/test_hash.i"
 	@echo "... tests/test_hash.s"

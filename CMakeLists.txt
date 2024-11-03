@@ -19,6 +19,14 @@ add_executable(holohash_tests
     tests/test_security.cpp
 )
 
+# Add benchmark executable
+add_executable(holohash_bench
+    benchmarks/benchmark_main.cpp
+)
+
+# Set optimization flags for benchmarking
+target_compile_options(holohash_bench PRIVATE -O3 -march=native)
+
 # Link Catch2
 target_link_libraries(holohash_tests PRIVATE Catch2::Catch2)
 

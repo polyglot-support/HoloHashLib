@@ -44,4 +44,5 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/holohash_tests.dir/DependInfo.cmake"
+  "CMakeFiles/holohash_bench.dir/DependInfo.cmake"
   )
