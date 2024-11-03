@@ -18,13 +18,24 @@ endif()
 # Add include directory
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
+# Fetch and configure Catch2
+include(FetchContent)
+FetchContent_Declare(
+    Catch2
+    URL https://github.com/catchorg/Catch2/archive/refs/tags/v3.4.0.zip
+    DOWNLOAD_EXTRACT_TIMESTAMP TRUE
+)
+FetchContent_MakeAvailable(Catch2)
+
 # Add test executable
 add_executable(holohash_tests
     tests/test_hash.cpp
     tests/test_nonce.cpp
     tests/test_keychain.cpp
     tests/test_security.cpp
+    tests/test_platform.cpp
 )
+target_link_libraries(holohash_tests PRIVATE Catch2::Catch2WithMain)
 
 # Add benchmark executable
 add_executable(holohash_bench
