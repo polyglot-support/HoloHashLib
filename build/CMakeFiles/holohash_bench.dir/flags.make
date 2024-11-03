@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/runner/workspace/include
 
-CXX_FLAGS = -std=gnu++20 -O3 -march=native
+CXX_FLAGS =  -march=native -mavx2 -msse4.2 -std=gnu++20 -O3 -march=native -ffast-math
 
