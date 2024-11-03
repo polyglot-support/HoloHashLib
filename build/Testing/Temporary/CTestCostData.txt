@@ -1,3 +1,2 @@
-holohash_tests 0 0
+holohash_tests 1 0.163382
 ---
-holohash_tests
