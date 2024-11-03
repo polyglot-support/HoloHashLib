@@ -11,6 +11,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/runner/workspace/tests/test_hash.cpp" "CMakeFiles/holohash_tests.dir/tests/test_hash.cpp.o" "gcc" "CMakeFiles/holohash_tests.dir/tests/test_hash.cpp.o.d"
   "/home/runner/workspace/tests/test_keychain.cpp" "CMakeFiles/holohash_tests.dir/tests/test_keychain.cpp.o" "gcc" "CMakeFiles/holohash_tests.dir/tests/test_keychain.cpp.o.d"
   "/home/runner/workspace/tests/test_nonce.cpp" "CMakeFiles/holohash_tests.dir/tests/test_nonce.cpp.o" "gcc" "CMakeFiles/holohash_tests.dir/tests/test_nonce.cpp.o.d"
+  "/home/runner/workspace/tests/test_security.cpp" "CMakeFiles/holohash_tests.dir/tests/test_security.cpp.o" "gcc" "CMakeFiles/holohash_tests.dir/tests/test_security.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

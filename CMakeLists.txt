@@ -16,6 +16,7 @@ add_executable(holohash_tests
     tests/test_hash.cpp
     tests/test_nonce.cpp
     tests/test_keychain.cpp
+    tests/test_security.cpp
 )
 
 # Link Catch2

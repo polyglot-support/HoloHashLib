@@ -211,6 +211,30 @@ tests/test_nonce.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/holohash_tests.dir/build.make CMakeFiles/holohash_tests.dir/tests/test_nonce.cpp.s
 .PHONY : tests/test_nonce.cpp.s
 
+tests/test_security.o: tests/test_security.cpp.o
+.PHONY : tests/test_security.o
+
+# target to build an object file
+tests/test_security.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/holohash_tests.dir/build.make CMakeFiles/holohash_tests.dir/tests/test_security.cpp.o
+.PHONY : tests/test_security.cpp.o
+
+tests/test_security.i: tests/test_security.cpp.i
+.PHONY : tests/test_security.i
+
+# target to preprocess a source file
+tests/test_security.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/holohash_tests.dir/build.make CMakeFiles/holohash_tests.dir/tests/test_security.cpp.i
+.PHONY : tests/test_security.cpp.i
+
+tests/test_security.s: tests/test_security.cpp.s
+.PHONY : tests/test_security.s
+
+# target to generate assembly for a file
+tests/test_security.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/holohash_tests.dir/build.make CMakeFiles/holohash_tests.dir/tests/test_security.cpp.s
+.PHONY : tests/test_security.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -230,6 +254,9 @@ help:
 	@echo "... tests/test_nonce.o"
 	@echo "... tests/test_nonce.i"
 	@echo "... tests/test_nonce.s"
+	@echo "... tests/test_security.o"
+	@echo "... tests/test_security.i"
+	@echo "... tests/test_security.s"
 .PHONY : help
 
 

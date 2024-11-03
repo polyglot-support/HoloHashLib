@@ -18,7 +18,6 @@ public:
     T& get() { return value_; }
     const T& get() const { return value_; }
     
-    // Add comparison operators
     bool operator==(const StrongType& other) const {
         return value_ == other.value_;
     }
@@ -26,13 +25,6 @@ public:
     bool operator!=(const StrongType& other) const {
         return !(*this == other);
     }
-    
-    // Add hash function for unordered_map
-    struct Hash {
-        size_t operator()(const StrongType& st) const {
-            return std::hash<T>{}(st.get());
-        }
-    };
 };
 
 // Session parameters struct
@@ -63,12 +55,17 @@ using Key = StrongType<std::array<uint8_t, 32>, struct KeyTag>;
 
 } // namespace holohash
 
-// Specialization of std::hash for Key type
+// Custom hash implementation for Key type
 namespace std {
     template<>
     struct hash<holohash::Key> {
         size_t operator()(const holohash::Key& k) const {
-            return holohash::Key::Hash{}(k);
+            const auto& arr = k.get();
+            size_t hash = 0;
+            for (const auto& byte : arr) {
+                hash = (hash * 31) + byte;
+            }
+            return hash;
         }
     };
 }
