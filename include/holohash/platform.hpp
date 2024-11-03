@@ -26,39 +26,37 @@ namespace platform {
 
 // Memory alignment helpers
 namespace detail {
-    // Check if a number is a power of 2 at compile time or runtime
+    // Check if a number is a power of 2 at compile time
     constexpr bool is_power_of_2(std::size_t x) noexcept {
         return x != 0 && (x & (x - 1)) == 0;
     }
 
-    // Convert pointer to integer at compile time or runtime
+    // Convert pointer to integer safely
     constexpr std::uintptr_t to_uintptr(const void* ptr) noexcept {
         return reinterpret_cast<std::uintptr_t>(ptr);
     }
 }
 
+// Platform-independent alignment check
 template<typename T>
 constexpr bool is_aligned(const T* ptr, std::size_t alignment) noexcept {
     static_assert(std::is_object_v<T>, "T must be an object type");
     static_assert(!std::is_function_v<T>, "T cannot be a function type");
     
-    // Early return for invalid alignments
     if (!detail::is_power_of_2(alignment)) {
         return false;
     }
-    
-    // nullptr is aligned to any power-of-2 alignment
+
     if (ptr == nullptr) {
         return true;
     }
-    
-    // Check alignment using bitwise operations instead of modulo
-    auto addr = detail::to_uintptr(ptr);
+
+    const auto addr = detail::to_uintptr(ptr);
     return (addr & (alignment - 1)) == 0;
 }
 
 // Platform-independent byte rotation
-inline constexpr uint8_t rotate_left(uint8_t value, unsigned int count) noexcept {
+constexpr uint8_t rotate_left(uint8_t value, unsigned int count) noexcept {
     const unsigned int mask = 7;
     count &= mask;
     return static_cast<uint8_t>((value << count) | (value >> ((-count) & mask)));
@@ -81,7 +79,7 @@ inline void simd_xor_block(uint8_t* dst, const uint8_t* src, size_t len) noexcep
 }
 
 // Cache line size detection
-inline constexpr size_t get_cache_line_size() noexcept {
+constexpr size_t get_cache_line_size() noexcept {
     return 64; // Most modern processors use 64-byte cache lines
 }
 
