@@ -100,7 +100,6 @@ jobs:
     - name: Run benchmarks
       working-directory: build
       run: Release\holohash_bench.exe
-      working-directory: build
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v3
